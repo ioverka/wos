@@ -12,7 +12,8 @@ def single(wosclient, wos_query, xml_query=None, count=5, offset=1):
     xml = _re.sub(' xmlns="[^"]+"', '', result.records, count=1).encode('utf-8')
     if xml_query:
         xml = _ET.fromstring(xml)
-        return [el.text for el in xml.findall(xml_query)]
+#        return [el.text for el in xml.findall(xml_query)]
+        return [el for el in xml.findall(xml_query)]
     else:
         return _minidom.parseString(xml).toprettyxml()
 
